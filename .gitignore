@@ -1,0 +1,44 @@
+cat <<EOF > .gitignore
+# === PHP ===
+*.log
+*.cache
+*.tmp
+
+# Composer
+/vendor/
+/composer.lock
+
+# PHPUnit
+.phpunit.result.cache
+
+# Laravel (caso use futuramente)
+/.env
+/.env.*
+/storage/
+/bootstrap/cache/
+
+# === VSCode ===
+.vscode/
+
+# === Sistema Operacional ===
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Icon?
+Desktop.ini
+
+# === IDEs comuns ===
+*.sublime-workspace
+*.sublime-project
+*.idea/
+*.vscode/
+
+# === Backup e temporários ===
+*.bak
+*.swp
+*.tmp
+*.orig
+*.old
+*.save
+*.~*
+EOF
