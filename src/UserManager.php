@@ -1,4 +1,7 @@
 <?php
+require_once 'Validator.php';
+require_once 'UserEmail.php';
+require_once 'UserPassword.php';
 
 class UserManager
 {
@@ -7,12 +10,14 @@ class UserManager
     public function getUserArray() { return $this->userArray; }
     public function setUserArray(array $users) { $this->userArray = $users; }
 
-    public function getUserByEmail(string $email) : User
+    public function getUserByEmail(string $email) : ?User
     {
         foreach ($this->userArray as $user){
             if ($user->getEmail() === $email)
-                return $user
+                return $user;
         }
+
+        return null;
     }
 
     public function generateSimulatedUsers() : array
@@ -27,7 +32,7 @@ class UserManager
         $users = [];
 
         foreach($usersData as $user) {
-            if (User::validateUser($user['id'], $user['name'], $user['email'], $user['password']))
+            if (Validator::validateUser($user['id'], $user['name'], $user['email'], $user['password']))
                 $users[] = new User($user['id'], $user['name'], UserManager::createNewEmail($user['email']), UserManager::createNewHashPassword(($user['password'])));
         }
 

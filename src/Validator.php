@@ -5,7 +5,7 @@ class Validator
     public static function validatePassword(string $password): bool 
     {
         if (strlen($password) < 8 || !preg_match('/\d/', $password) || !preg_match('/[A-Z]/', $password)) {
-            echo("Senha inválida");
+            echo("Senha inválida<br>");
             return false;
         }
 
@@ -15,7 +15,7 @@ class Validator
     public static function validateEmail(string $email) : bool
     {
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            echo("Email Inválido");
+            echo("Email Inválido<br>");
             return false;
         }
 
@@ -24,8 +24,8 @@ class Validator
 
     public static function validateUser(int $id, string $name, string $email, string $password) : bool
     {
-        if ($id <= 0 || strlen($name) <= 1 || !UserEmail::validateEmail($email) || !UserPassword::validatePassword($password)) {
-            echo("Usuário inválido");
+        if ($id <= 0 || strlen($name) <= 1 || !Validator::validateEmail($email) || !Validator::validatePassword($password)) {
+            echo("Usuário inválido<br>");
             return false;
         }
 
